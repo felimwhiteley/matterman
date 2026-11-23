@@ -1,3 +1,4 @@
+# Nginx config that sends requests to the mmm.py service through gunicorn
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
