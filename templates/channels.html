@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>Private Channels</h2>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Channel</th>
+            <th scope="col">Display Name</th>
+            <th scope="col">Message Count</th>
+            <th scope="col">MPD</th>
+            <th scope="col">Created</th>
+            <th scope="col">Last Message</th>
+            <th scope="col">Deleted</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for channel in channels %}
+      {% if channel.Deleted %}
+        <tr class="danger">
+      {% else %}
+        <tr>
+      {% endif %}
+        <th scope="row"><a href="channel/{{channel.Id}}">{{channel.Name}}</a></th>
+        <td>{{channel.DisplayName}}</td>
+        <td>{{channel.TotalMsgCount}}</td>
+        <td>{{channel.MPD}}</td>
+        <td>{{channel.Created}}</td>
+        <td>{{channel.LastPosted}}</td>
+        <td>{{channel.Deleted}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

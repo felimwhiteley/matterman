@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>{{channel.Name}}</h2>
+  <small>{{channel.DisplayName}}</small>
+  <hr>
+
+  <div>
+    <bold>Header:</bold> {{channel.Header | safe }}
+  </div>
+  <div>
+    <bold>Purpose:</bold> {{channel.Purpose | safe }}
+  </div>
+  <div>
+    <bold>Team:</bold> <a href="/team/{{channel.TeamId}}">{{channel.TeamDisplayName}}</a> ({{channel.TeamName}})
+  </div>
+  <hr>
+
+  <h4>View Posts</h4>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel.Id}}/129600/">Last 36hr</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel.Id}}/604800/">Last 7days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel.Id}}/2678400/">Last 31days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel.Id}}/7776000/">Last 90days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel/{{channel.Id}}/">All</a>
+{% endblock %}

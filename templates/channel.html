@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>{{channel[0].Name}}</h2>
+  <small>{{channel[0].DisplayName}}</small>
+  <hr>
+  <div>
+    Created:    {{channel[0].Created }}
+  </div>
+  <div>
+    Updated:    {{channel[0].Updated }}
+  </div>
+  <div>
+    LastPostAt: {{channel[0].LastPosted }}
+  </div>
+  <div>
+    Creator:    {{channel[0].created_by }}
+  </div>
+  <div>
+    Deleted:    {{channel[0].Deleted }}
+  </div>
+
+  <hr>
+  <h3>Members:</h3>
+  <ul class="list-group">
+  {% for member in channel %}
+    <li class="list-group-item"><a href="/user/{{member.UserId}}">{{member.Username}}</a></li>
+  {% endfor %}
+  </ul>
+
+  <h4>View Posts</h4>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel[0].Id}}/129600/">Last 36hr</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel[0].Id}}/604800/">Last 7days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel[0].Id}}/2678400/">Last 31days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel_limit/{{channel[0].Id}}/7776000/">Last 90days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_channel/{{channel[0].Id}}/">All</a>
+{% endblock %}

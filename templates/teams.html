@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>Teams</h2>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Team</th>
+            <th scope="col">Display Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Deleted</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for team in teams %}
+      {% if team.Deleted %}
+        <tr class="danger">
+      {% else %}
+        <tr>
+      {% endif %}
+        <th scope="row"><a href="team/{{team.Id}}">{{team.Name}}</a></th>
+        <td>{{team.DisplayName}}</td>
+        <td>{{team.Email}}</td>
+        <td>{{team.Deleted}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

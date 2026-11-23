@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>{{user[0].Username}}</h2>
+  <small>{{user[0].FirstName}} {{user[0].LastName}}</small>
+  <small>{{user[0].Nickname}}</small>
+  <hr>
+
+  <div>
+    <bold>Roles:</bold> {{user[0].Roles | safe }}
+  </div>
+  <div>
+    <bold>Email:</bold> {{user[0].Email | safe }} (Verified:{{user[0].EmailVerified}})
+  </div>
+  <div>
+    <bold>Deleted:</bold> {{user[0].Deleted}}
+  </div>
+
+  <hr>
+  <h3>Teams:</h3>
+  <ul class="list-group">
+  {% for team in user %}
+    <li class="list-group-item"><a href="/team/{{team.TeamId}}">{{team.Name}}</a> :: {{team.DisplayName}}</li>
+  {% endfor %}
+  </ul>
+
+  <h4>View Posts</h4>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_user_limit/{{user[0].Id}}/129600/">Last 36hr</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_user_limit/{{user[0].Id}}/604800/">Last 7days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_user_limit/{{user[0].Id}}/2678400/">Last 31days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_user_limit/{{user[0].Id}}/7776000/">Last 90days</a>
+  <a class="btn btn-default" role="button"
+    href="/posts_by_user/{{user[0].Id}}/">All</a>
+{% endblock %}

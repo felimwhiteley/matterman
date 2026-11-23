@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if posts %}
+  <h2>Posts by <a href="/user/{{posts[0].UserId}}">{{posts[0].Username}}</a></h2>
+{% else %}
+  <h2>No Posts Available</h2>
+{% endif %}
+  <table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Username</th>
+            <th scope="col">TeamId</th>
+            <th scope="col">Channel</th>
+            <th scope="col">Message</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for post in posts %}
+      {% if post.DeleteAt %}
+        <tr class="danger">
+      {% elif post.EditAt %}
+        <tr class="warning">
+      {% else %}
+        <tr>
+      {% endif %}
+        <td>{{post.timestamp}}</td>
+        <td><a href="/user/{{post.UserId}}">{{post.Username}}</td>
+        <td><a href="/team/{{post.TeamId}}">{{post.TeamName}}</td>
+        <td><a href="/channel/{{post.ChannelId}}">{{post.ChannelName}}</td>
+        <td>{{post.Message | safe}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

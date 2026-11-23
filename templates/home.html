@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+  <h2>Current Agent Status</h2>
+  <p class="lead">
+  {% for state in status %}
+    <div>
+      {{state.Status.capitalize()}}: {{state.StateCount}} users
+    </div>
+  {% endfor %}
+  </p>
+</div>
+{% endblock %}

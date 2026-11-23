@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>{{team[0].DisplayName}}</h2>
+  <small>{{team[0].Name}}</small>
+  <hr>
+
+  <div>
+    <bold>Email:</bold> {{team[0].Email | safe }}
+  </div>
+  <div>
+    <bold>Deleted:</bold> {{team[0].Deleted}}
+  </div>
+
+  <hr>
+  <h3>Users:</h3>
+  <ul class="list-group">
+  {% for user in team %}
+    <li class="list-group-item"><a href="/user/{{user.UserId}}">{{user.Username}}</a> :: {{user.FirstName}} {{user.LastName}}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

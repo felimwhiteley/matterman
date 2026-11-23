@@ -1,0 +1,18 @@
+# FILE: /etc/systemd/system/mmm.service
+# INSTALL:
+#          sudo systemctl enable mmm
+#          sudo systemctl start mmm
+
+[Unit]
+Description=Gunicorn instance to serve MatterMostManager
+After=network.target
+
+[Service]
+User=srvadmin
+Group=srvadmin
+WorkingDirectory=/home/srvadmin/src/mmm
+Environment="PATH=/home/srvadmin/src/mmm"
+ExecStart=/usr/bin/gunicorn3 --workers 3 mmm:app
+
+[Install]
+WantedBy=multi-user.target

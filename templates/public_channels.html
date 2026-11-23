@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2>Public Channels</h2>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Display Name</th>
+            <th scope="col">Team</th>
+            <th scope="col">Deleted</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for channel in channels %}
+      {% if channel.Deleted %}
+        <tr class="danger">
+      {% else %}
+        <tr>
+      {% endif %}
+        <th scope="row"><a href="public_channel/{{channel.Id}}">{{channel.Name}}</a></th>
+        <td>{{channel.DisplayName}}</td>
+        <td><a href="team/{{channel.TeamId}}">{{channel.TeamDisplayName}}</td>
+        <td>{{channel.Deleted}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
